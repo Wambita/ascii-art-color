@@ -9,58 +9,74 @@ import (
 )
 
 func main() {
-	// Check if command-line arguments are appropriate, providing usage instructions if not.
-	if len(os.Args) > 5 || len(os.Args) == 1 {
-		fmt.Println("Usage: go run . <string> or go run . <string> <flag>")
+	if len(os.Args) < 1 || len(os.Args) > 5 {
+		fmt.Println("Usage: go run . --color=<color> <letters to be colored> \"something\" --bannerfile")
 		return
 	}
-	// Validate input string for printable characters.
-	input := os.Args[2]
-	if !asciiart.IsPrintable(input) {
-		fmt.Println("Error: Input string contains non-printable characters")
-		return
+	var inputString string
+	var lettersToColor string
+	var filePath string
+	// var colorFlag string
+	var color string
+	if len(os.Args) == 2 {
+		inputString = os.Args[1]
+		lettersToColor = inputString
+		color = "resetCode"
 	}
-	color := os.Args[1]
-	colorSplit := strings.Split(color, "=")
-	final := colorSplit[len(colorSplit)-1]
+	if len(os.Args) == 3 {
+		colorFlag := os.Args[1]
+		inputString = os.Args[2]
+		colorSplit := strings.Split(colorFlag, "=")
+		color = colorSplit[1]
+		lettersToColor = inputString
+		if len(colorSplit) != 2 || colorSplit[0] != "--color" {
+			fmt.Println("Usage: go run . --color=<color> <letters to be colored> \"something\"")
+			return
+		}
+	}
+	if len(os.Args) == 4 {
+		colorFlag := os.Args[1]
+		inputString = os.Args[3]
+		lettersToColor = os.Args[2]
+		colorSplit := strings.Split(colorFlag, "=")
+		color = colorSplit[1]
+		if len(colorSplit) != 2 || colorSplit[0] != "--color" {
+			fmt.Println("Usage: go run . --color=<color> <letters to be colored> \"something\"")
+			return
+		}
+	}
 
-	// Handle special cases for empty input or newline character.
-	if input == "" {
-		return
+	if len(os.Args) == 5 {
+		colorFlag := os.Args[1]
+		inputString = os.Args[3]
+		lettersToColor = os.Args[2]
+		colorSplit := strings.Split(colorFlag, "=")
+		color = colorSplit[1]
+		if len(colorSplit) != 2 || colorSplit[0] != "--color" {
+			fmt.Println("Usage: go run . --color=<color> <letters to be colored> \"something\"")
+			return
+		}
+		bannerFlag := os.Args[4]
+		if bannerFlag == "-shadow" {
+			filePath = "../bannerfiles/shadow.txt"
+		} else if bannerFlag == "-thinkertoy" {
+			filePath = "../bannerfiles/thinkertoy.txt"
+		} else if bannerFlag == "-standard" {
+			filePath = "../bannerfiles/standard.txt"
+		} else {
+			fmt.Println("Please provide the correct flag, <-shadow> or <-thinkertoy> or <standard>")
+			return
+		}
 	}
-	if input == "\\n" {
-		fmt.Println()
-		return
-	}
-	// Determine the file path based on the number of command-line arguments and their values.
-	// var filePath string
 
-	// if len(os.Args) == 2 {
-	// 	filePath = "standard.txt"
-	// }
-	// if len(os.Args) == 3 {
-	// 	flag := os.Args[2]
-	// 	if flag == "-shadow" {
-	// 		filePath = "shadow.txt"
-	// 	} else if flag == "-thinkertoy" {
-	// 		filePath = "thinkertoy.txt"
-	// 	} else if flag == "-standard" {
-	// 		filePath = "standard.txt"
-	// 	} else {
-	// 		fmt.Println("Please provide the correct flag, <-shadow> or <-thinkertoy> or <standard>")
-	// 		return
-	// 	}
-	// }
-	// Read the ASCII art map from the specified file.
-	characterMap, err := asciiart.CreateMap("standard.txt")
+	// Extract the letters to be colored and the rest of the string
+	// lettersToColor, inputString = extractLettersToColor(args)
+
+	characterMap, err := asciiart.CreateMap(filePath)
 	if err != nil {
 		fmt.Println("Error reading map:", err)
 		return
 	}
-	// Display ASCII art corresponding to the input string using the provided map
-	if len(characterMap) == 0 {
-		fmt.Println("File is empty")
-		return
-	}
-	asciiart.DisplayAsciiArt(characterMap, input, final)
+
+	asciiart.DisplayAsciiArtWithPartialColor(characterMap, inputString, lettersToColor, color)
 }
