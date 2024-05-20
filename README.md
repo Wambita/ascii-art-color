@@ -6,7 +6,7 @@
 - shfana
 
 
-Ascii-art is a program written in Go that takes a string as an argument and outputs the string in a graphical representation using ASCII characters.
+Ascii-art is a program written in Go that takes a string and a color option as an argument and outputs the string in a graphical representation using ASCII  characters and colors the art with the color given.
 
 ## Graphic Representation Using ASCII
 
