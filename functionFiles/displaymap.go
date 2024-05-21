@@ -2,56 +2,153 @@ package asciiart
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
+
+	asciiart "asciiart/colorconversions"
 )
 
-func DisplayAsciiArt(characterMap map[rune][]string, input, color string) {
-	// Check if the character map is empty
+func ExtractRGBValues(rgb string) (int, int, int, error) {
+	if !strings.HasPrefix(rgb, "rgb(") || !strings.HasSuffix(rgb, ")") {
+		return 0, 0, 0, fmt.Errorf("invalid rgb format")
+	}
+	rgb = strings.TrimPrefix(rgb, "rgb(")
+	rgb = strings.TrimSuffix(rgb, ")")
+	values := strings.Split(rgb, ",")
+	if len(values) != 3 {
+		return 0, 0, 0, fmt.Errorf("invalid rgb format")
+	}
+	r, err1 := strconv.Atoi(strings.TrimSpace(values[0]))
+	g, err2 := strconv.Atoi(strings.TrimSpace(values[1]))
+	b, err3 := strconv.Atoi(strings.TrimSpace(values[2]))
+	if err1 != nil || err2 != nil || err3 != nil {
+		return 0, 0, 0, fmt.Errorf("invalid rgb values")
+	}
+	if r < 0 || r > 255 {
+		return 0, 0, 0, fmt.Errorf("red value must be between 0 and 255")
+	}
+	if g < 0 || g > 255 {
+		return 0, 0, 0, fmt.Errorf("green value must be between 0 and 255")
+	}
+	if b < 0 || b > 255 {
+		return 0, 0, 0, fmt.Errorf("blue value must be between 0 and 255")
+	}
+
+	return r, g, b, nil
+}
+
+// ExtractHSLValues extracts the h, s, l values from an hsl string.
+func ExtractHSLValues(hsl string) (float64, float64, float64, error) {
+	if !strings.HasPrefix(hsl, "hsl(") || !strings.HasSuffix(hsl, ")") {
+		return 0, 0, 0, fmt.Errorf("invalid hsl format")
+	}
+	hsl = strings.TrimPrefix(hsl, "hsl(")
+	hsl = strings.TrimSuffix(hsl, ")")
+	values := strings.Split(hsl, ",")
+	if len(values) != 3 {
+		return 0, 0, 0, fmt.Errorf("invalid hsl format")
+	}
+	h, err1 := strconv.ParseFloat(strings.TrimSuffix(strings.TrimSpace(values[0]), "%"), 64)
+	s, err2 := strconv.ParseFloat(strings.TrimSuffix(strings.TrimSpace(values[1]), "%"), 64)
+	l, err3 := strconv.ParseFloat(strings.TrimSuffix(strings.TrimSpace(values[2]), "%"), 64)
+	if err1 != nil || err2 != nil || err3 != nil {
+		return 0, 0, 0, fmt.Errorf("invalid hsl values")
+	}
+	if h < 0 || h > 360 {
+		return 0, 0, 0, fmt.Errorf("hue value must be between 0 and 360")
+	}
+	if s < 0 || s > 100 {
+		return 0, 0, 0, fmt.Errorf("saturation value must be between 0 and 100")
+	}
+	if l < 0 || l > 100 {
+		return 0, 0, 0, fmt.Errorf("lightness value must be between 0 and 100")
+	}
+	return h, s, l, nil
+}
+
+func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lettersToColor, color string) {
 	if len(characterMap) == 0 {
 		fmt.Println("Error: Character map is empty. Please provide a valid character map.")
 		return
 	}
-	// Split the input string by "\n" to handle newline characters.
-	inputSlice := strings.Split(input, "\\n")
-	count := 0
-	colorMap := map[string]string{
-		"cyan":   "\033[36m",
-		"grey":   "\033[37m",
-		"yellow": "\033[33m",
-		"black" : "\x1b[30m",
-		"red": "\x1b[31m",
-		"green" :"\x1b[32m",
-		"blue":"\x1b[34m",
-		"magneta":"\x1b[35m",
-		"white" : "\x1b[37m",
 
+	resetCode := "\033[0m"
+
+	colorMap := map[string]string{
+		"cyan":          "\033[36m",
+		"grey":          "\033[37m",
+		"yellow":        "\033[33m",
+		"black":         "\x1b[30m",
+		"red":           "\x1b[31m",
+		"green":         "\x1b[32m",
+		"blue":          "\x1b[34m",
+		"magneta":       "\x1b[35m",
+		"white":         "\x1b[37m",
+		"pink":          "\x1b[38;5;205m", // ANSI code for pink
+		"brown":         "\x1b[38;5;94m",  // ANSI code for brown
+		"orange":        "\x1b[38;5;214m", // ANSI code for orange
+		"lime":          "\x1b[38;5;10m",
+		"brightBlack":   "\x1b[90m",
+		"brightRed":     "\x1b[91m",
+		"brightGreen":   "\x1b[92m",
+		"brightYellow":  "\x1b[93m",
+		"brightBlue":    "\x1b[94m",
+		"brightMagenta": "\x1b[95m",
+		"brightCyan":    "\x1b[96m",
+		"brightWhite":   "\x1b[97m",
+		"resetCode":     "\033[0m",
 	}
 
-	// Iterate through the split input segments.
-	// If the segment is empty (indicating a newline), it prints a newline character, ensuring proper formatting.
-	/* If the segment contains characters:
-	   Iterates through each character in the segment.
-	   Retrieves the corresponding ASCII art lines for the character from the character map.
-	   Prints each line of ASCII art for the character.
-	   If the character is not found in the map, it prints an error message and returns.*/
+	var colorCode string
+	var ok bool
 
-	for _, value := range inputSlice {
-		// var Cyan = "\033[36m"
+	if strings.HasPrefix(color, "#") {
+		colorCode = asciiart.ConvertHexToAnsi(color)
+		if colorCode == "" {
+			fmt.Println("Error: Invalid hex color specified.")
+			return
+		}
+	} else if strings.HasPrefix(color, "rgb(") {
+		r, g, b, err := ExtractRGBValues(color)
+		if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+		colorCode = asciiart.ConvertRGBToAnsi(r, g, b)
+	} else if strings.HasPrefix(color, "hsl(") {
+		h, s, l, err := ExtractHSLValues(color)
+		if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+		r, g, b := asciiart.ConvertHSLToRGB(h, s, l)
+		colorCode = asciiart.ConvertRGBToAnsi(r, g, b)
+	} else {
+		colorCode, ok = colorMap[color]
+		if !ok {
+			fmt.Println("Error: Invalid color specified.")
+			return
+		}
+	}
 
-		if value == "" {
-			count++
-			if count < len(inputSlice) {
-				fmt.Println()
-			}
+	input = strings.ReplaceAll(input, "\\n", "\n")
+	inputSlice := strings.Split(input, "\n")
+
+	for _, line := range inputSlice {
+		if line == "" {
+			fmt.Println()
 		} else {
-			color, str := colorMap[color]
 			for i := 0; i < 8; i++ {
-				for _, char := range value {
-					line, ok := characterMap[char]
-					if ok && str {
-						fmt.Print(color + line[i])
+				for _, char := range line {
+					artLines, ok := characterMap[char]
+					if ok {
+						if strings.ContainsRune(lettersToColor, char) {
+							fmt.Print(colorCode + artLines[i] + resetCode)
+						} else {
+							fmt.Print(artLines[i])
+						}
 					} else {
-						fmt.Println("Characters not found")
+						fmt.Printf("Error: Character '%c' not found in map.\n", char)
 						return
 					}
 				}
