@@ -13,7 +13,7 @@ func ConvertHSLToRGB(h, s, l float64) (int, int, int) {
 	// M (m): Represents the amount to be added to each RGB component to match the lightness:
 	c := (1 - abs(2*l-1)) * s
 	x := c * (1 - abs(math.Mod(h/60, 2)-1))
-	m := 1 - c/2
+	m := l - c/2
 
 	var r, g, b float64
 
