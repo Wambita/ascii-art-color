@@ -169,6 +169,13 @@ o-o o  o   o   o   o-o-  o-o o  o $
                                   $
                                   $
 ```
+
+## Color Code types
+- **Hexadecimal**: A 6-digit hexadecimal representation of a color, with 2 digits for each of the red, green and blue components. For example, #ff0000 represents the color red.
+
+- **RGB**: A comma-separated list of the red, green and blue components of a color, each ranging from 0 to 255. For example, rgb(255, 0, 0) represents the color red.
+
+- **HSL**: A comma-separated list of the hue, saturation and lightness components of a color, with the hue ranging from 0 to 360, and the saturation and lightness ranging from 0% to 100%. For example, hsl(0, 100%, 50%) represents the color red.
                                                              
 ## Conclusion
 This project helps you learn about:
