@@ -1,4 +1,5 @@
 # ASCII Art with Colors
+![image](https://www.itsupportwale.com/blog/wp-content/uploads/2020/01/figlet-toilet-featured-image.jpg)
 
 ## Authors
 - [mdudi](https://github.com/Dudimath)
@@ -9,6 +10,13 @@
 ### Overview
 
 ASCII Art with Colors is a Go program that generates graphical representations of text using ASCII characters and allows you to color specific letters or the entire string using various color notations such as ANSI, RGB, and HSL.
+
+## Features
+
+- Colorize ASCII art strings with various color systems: RGB, Hex, HSL, and ANSI.
+
+- Option to colorize specific letters or the entire string.
+Clear and concise usage message for easy understanding.
 
 ## Graphic Representation Using ASCII
 
