@@ -166,7 +166,6 @@ Output:
 | |  | | |  __/ | | | | | (_) |
 |_|  |_|  \___| |_| |_|  \___/
 
-
 ```
 
 **Command with Color Selection**
