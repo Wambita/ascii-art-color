@@ -1,6 +1,7 @@
 # Ascii-Art-Color
 
-![](bannerfiles/images/pic.png)
+![image](https://www.itsupportwale.com/blog/wp-content/uploads/2020/01/figlet-toilet-featured-image.jpg)
+
 
 ### Overview
 
