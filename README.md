@@ -1,5 +1,7 @@
 # Ascii-Art-Color
 
+![](bannerfiles/images/pic.png)
+
 ### Overview
 
 The ASCII-Art program converts input text into a graphic representation using ASCII characters and colors the art using the color specified by the user. It supports various fonts and special characters, including spaces, newlines, and punctuation. This tool is ideal for creating stylized text for use in command line applications, documentation, or simply for artistic purposes.
@@ -63,14 +65,14 @@ The function extracts the color information from the command-line arguments, rea
 To run the program, use the following commands:
 
 ```bash
-go run . --color=#ff0000 "" 
-go run . --color=rgb(255, 0, 0) "\n" 
-go run . --color=hsl(0, 100%, 50%) "Hello\n" 
+go run . "--color=#ff0000" "" 
+go run . "--color=rgb(255, 0, 0)" "\n" 
+go run . "--color=hsl(0, 100%, 50%)" "Hello\n" 
 go run . --color=blue "hello" 
 go run . --color=green "HeLlO" 
 go run . --color=purple "Hello There" 
 go run . --color=yellow "1Hello 2There" 
-go run . --color=#00ffff "{Hello There}" 
+go run . "--color=#00ffff" "{Hello There}" 
 go run . --color=orange "Hello\nThere" 
 go run . --color=gray "Hello\n\nThere"
 go run . --color=red "my" "my code"
@@ -88,9 +90,9 @@ go run . --color=red "my" "my code"
 
 ```bash
 go run . --color=red "Hello"
-go run . --color=rgb(255, 0, 0) "Hello"
-go run . --color=hsl(0, 100%, 50%) "Hello"
-go run . --color=#FF0000 "Hello"
+go run . "--color=rgb(255, 0, 0)" "Hello"
+go run . "--color=hsl(0, 100%, 50%)" "Hello"
+go run . "--color=#FF0000" "Hello"
 
 ```
 
@@ -136,224 +138,101 @@ Ensure that Go is installed on your system. You can install Go from the official
 ```
 ### Usage
 
-Run the program by passing the text string as an argument. You can also specify a font style optionally. If no font is specified, 'standard' is used by default.
+Run the program by navigating to ascciart directory and passing the text string as an argument along with the --color option to specify the color. Here's an example:
 
-**Basic Command:**
+```bash
+cd ascciart/
+go run . --color=red  "Hello"
+go run . --color=green "Hello" 
+
+```                                                             
+Then you start ,making changes 🏃‍♂️🏃‍♂️🏃‍♂️
+
+Replace "Hello" with your desired text string and "red" and "green" with your preferred color choices.
+
+**Basic Command: No Color Selection**
 
 ``` bash
+cd ascciart/
+go run .  "Hello" 
 
-go run . "Hello" | cat -e
 ```
 Output:
+```bash
+ _    _          _   _
+| |  | |        | | | |
+| |__| |   ___  | | | |   ___
+|  __  |  / _ \ | | | |  / _ \
+| |  | | |  __/ | | | | | (_) |
+|_|  |_|  \___| |_| |_|  \___/
 
 ```
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
-$                                                  
-```
 
-**Command with Font Selection:**
+**Command with Color Selection**
+
 
 ``` bash
-
-go run . "Hello" -shadow  | cat -e
-```
-Output :
-```
-                                 $
-_|                _| _|          $
-_|_|_|     _|_|   _| _|   _|_|   $
-_|    _| _|_|_|_| _| _| _|    _| $
-_|    _| _|       _| _| _|    _| $
-_|    _|   _|_|_| _| _|   _|_|   $
-                                 $
-                                 $
-```
-```bash
-go run . "hello" -thinkertoy | cat -e
-```
-```
-                 $
-o        o o     $
-|        | |     $
-O--o o-o | | o-o $
-|  | |-' | | | | $
-o  o o-o o o o-o $
-                 $
-                 $
-```
-### Special Characters:
-
-To handle special characters or avoid shell interpretation issues, especially in bash, enclose the input in single quotes:
-
-```bash
-
-go run . '!@#$%^&*()_+' | cat -e
+go run . --color=green "Hello" 
 
 ```
-Output: 
-```
- _               _  _      _    _   __  /\               _       __ __                    $
-| |    ____    _| || |_   | |  (_) / / |/\|   ___     /\| |/\   / / \ \              _    $
-| |   / __ \  |_  __  _| / __)    / /        ( _ )    \ ` ' /  | |   | |           _| |_  $
-| |  / / _` |  _| || |_  \__ \   / /         / _ \/\ |_     _| | |   | |          |_   _| $
-|_| | | (_| | |_  __  _| (   /  / / _       | (_>  <  / , . \  | |   | |            |_|   $
-(_)  \ \__,_|   |_||_|    |_|  /_/ (_)       \___/\/  \/|_|\/  | |   | |                  $
-      \____/                                                    \_\ /_/   ______          $
-                                                                         |______|         $
-```
-#### Handling Line Breaks
-
-To incorporate line breaks in your ASCII art, use \n within the input text. For example:
-
-```bash
-
-go run . "Hello\nWorld" | cat -e
-
-```
-
 Output:
-```
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
-__          __                 _       _  $
-\ \        / /                | |     | | $
- \ \  /\  / /    ___    _ __  | |   __| | $
-  \ \/  \/ /    / _ \  | '__| | |  / _` | $
-   \  /\  /    | (_) | | |    | | | (_| | $
-    \/  \/      \___/  |_|    |_|  \__,_| $
-                                          $
-                                          $
-```
 
+![basic command](/bannerfiles/images/basicuse.png)
 
-```bash
-
-go run . "Hello\n\nWorld" | cat -e
+**Command with Text and Color  Selection:**
+``` bash
+go run . --color=green  "my" "my code" 
 
 ```
-
 Output:
-```
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
-$
-__          __                 _       _  $
-\ \        / /                | |     | | $
- \ \  /\  / /    ___    _ __  | |   __| | $
-  \ \/  \/ /    / _ \  | '__| | |  / _` | $
-   \  /\  /    | (_) | | |    | | | (_| | $
-    \/  \/      \___/  |_|    |_|  \__,_| $
-                                          $
-                                          $
-```
+
+![basic command](/bannerfiles/images/lettersandcolor.png)
+
+**Command with  Hexadecimal Color Selection**
 
 
-```bash
-
-go run . "Hello\n" | cat -e
+``` bash
+go run . "--color=00FF00" "Hello" 
 
 ```
-
 Output:
-```
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
-$
-```
+
+![basic command](/bannerfiles/images/basicuse.png)
+
+**Command with  HSL Color Selection**
 
 
-```bash
-
-go run . "\nWorld" | cat -e
+``` bash
+go run . "--color=hsl(120, 100, 50)" "Hello" 
 
 ```
-
-Output
-```
-$
-__          __                 _       _  $
-\ \        / /                | |     | | $
- \ \  /\  / /    ___    _ __  | |   __| | $
-  \ \/  \/ /    / _ \  | '__| | |  / _` | $
-   \  /\  /    | (_) | | |    | | | (_| | $
-    \/  \/      \___/  |_|    |_|  \__,_| $
-                                          $
-                                          $
-```
-
-
-```bash
-
-go run . "\n" | cat -e
-
-```
-
 Output:
-```
-$
-```
+
+![basic command](/bannerfiles/images/basicuse.png)
+
+**Command with  RGB Color Selection**
 
 
-```bash
-go run . "\n\n" | cat -e
-```
+``` bash
+go run . "--color=hsl(0, 128, 0)" "Hello" 
 
+```
 Output:
-```
-$
-$
-```
 
+![basic command](/bannerfiles/images/basicuse.png)
+
+**Command with wrong input(wrong number of arguments)**
+``` bash
+go run . 
+
+```
+Output:
 
 ```bash
-go run . "Hello
-> World" | cat -e
-```
-Output
-```
- _              _   _                $
-| |            | | | |               $
-| |__     ___  | | | |   ___         $
-|  _ \   / _ \ | | | |  / _ \        $
-| | | | |  __/ | | | | | (_) |       $
-|_| |_|  \___| |_| |_|  \___/        $
-                                     $
-                                     $
-                           _       _  $
-                          | |     | | $
-__      __   ___    _ __  | |   __| | $
-\ \ /\ / /  / _ \  | '__| | |  / _` | $
- \ V  V /  | (_) | | |    | | | (_| | $
-  \_/\_/    \___/  |_|    |_|  \__,_| $
-                                      $
-                                      $
-```
+Usage: go run . [OPTION] [STRING] 
 
+EX: go run . --color=<color> <letters to be colored> "something"
+```
 
 ### Fonts / Banner Format
 This project comes with three predefined ASCII fonts, located in banner files:
@@ -365,6 +244,7 @@ This project comes with three predefined ASCII fonts, located in banner files:
 
 **- Each character is represented over 8 lines, providing a clear and sizable output.*
 **- Characters are separated by a new line `\n`.*
+**-Can only specify font in the code **
 
 ### Development Notes
 
@@ -373,7 +253,15 @@ This project comes with three predefined ASCII fonts, located in banner files:
 Unit tests are highly recommended to ensure the integrity and functionality of the code. Test cases can be executed with:
 
 ```bash
-cd toany folder
+cd functionfiles 
+
+go test -v
+ ```
+
+ or 
+
+ ```bash
+cd colorconversions
 
 go test -v
  ```
@@ -385,43 +273,27 @@ Only standard Go packages are allowed in this project. This restriction is to en
 ### Contribution
 
 Contributions are welcome. Please adhere to the existing coding standards and include unit tests for any new features or changes. Ensure to thoroughly test the code before pushing any updates.
+If you encounter any issues or have suggestions for improvement, feel free to submit an issue or propose a change!
+
+### Limitations
+This project can only use the standard font, in this case other fonts are not supported. This will be added in the future. If you are interested in supporting this feature feel free to submit a pull request.
 
 ### License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-### Author
-This project was build and maintained by  [Wambita](https://github.com/Wambita)
-## Color Code types
-- **Hexadecimal**: A 6-digit hexadecimal representation of a color, with 2 digits for each of the red, green and blue components. For example, #ff0000 represents the color red.
+## Resources
+### Color codes
+- [Hexadecimal](https://www.w3schools.com/colors/colors_hexadecimal.asp): A 6-digit hexadecimal representation of a color, with 2 digits for each of the red, green and blue components. For example, #ff0000 represents the color red.
 
-- **RGB**: A comma-separated list of the red, green and blue components of a color, each ranging from 0 to 255. For example, rgb(255, 0, 0) represents the color red.
+- [RGB](https://www.w3schools.com/colors/colors_rgb.asp): A comma-separated list of the red, green and blue components of a color, each ranging from 0 to 255. For example, rgb(255, 0, 0) represents the color red.
 
-- **HSL**: A comma-separated list of the hue, saturation and lightness components of a color, with the hue ranging from 0 to 360, and the saturation and lightness ranging from 0% to 100%. For example, hsl(0, 100%, 50%) represents the color red.
-                                                             
-## Conclusion
-This project helps you learn about:
+- [HSL](https://www.w3schools.com/colors/colors_hsl.asp): A comma-separated list of the hue, saturation and lightness components of a color, with the hue ranging from 0 to 360, and the saturation and lightness ranging from 0% to 100%. For example, hsl(0, 100%, 50%) represents the color red.
+- [Color Conversion Algorithm](https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae)
 
-- Go file system (fs) API.
-- Data manipulation.
-
-If you encounter any issues or have suggestions for improvement, feel free to submit an issue or propose a change!
-
-To get started working on the ASCII Art project, follow these steps:
-
-Clone the Repository: First, clone the repository to your local machine using Git. You can do this by running the following command in your terminal:
-bash
-```bash
-git clone https://learn.zone01kisumu.ke/git/mdudi/ascii-art.git
-```
-Navigate to the Project Directory: Move into the project directory using the cd command:
-
-```bash
-cd ascii-art
-```
-Then you start ,making changes 🏃‍♂️🏃‍♂️🏃‍♂️
 
 ## Authors
+This project was build and maintained by:
 - [mdudi](https://github.com/Dudimath)
 - [hokwach](https://learn.zone01kisumu.ke/git/hokwach/)
 - [shfana](https://learn.zone01kisumu.ke/git/shfana/)
