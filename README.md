@@ -92,7 +92,7 @@ go run . --color=red "my" "my code"
 ```bash
 go run . --color=red "Hello"
 go run . "--color=rgb(255, 0, 0)" "Hello"
-go run . "--color=hsl(0, 100%, 50%)" "Hello"
+go run . "--color=hsl(0, 100, 50)" "Hello"
 go run . "--color=#FF0000" "Hello"
 
 ```
