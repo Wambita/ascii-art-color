@@ -1,6 +1,6 @@
 # Ascii-Art-Color
 
-![image](https://www.itsupportwale.com/blog/wp-content/uploads/2020/01/figlet-toilet-featured-image.jpg)
+![image](/bannerfiles/images/pic.png)
 
 
 ### Overview
@@ -83,9 +83,9 @@ go run . --color=red "my" "my code"
 ### Flags
 - `--color=<color>`: Specifies the color to use for highlighting. Accepts color names from the available colors.
 
-- `--color=<rgb>`: Specifies the color in RGB format. Takes a string with rgb values in the format `rgb(0, 0, 0)`between 0 and 255 representing red, green, and blue components.
+- `"--color=<rgb>"`: Specifies the color in RGB format. Takes a string with rgb values in the format `rgb(0, 0, 0)`between 0 and 255 representing red, green, and blue components.
 
-- `--color=<hsl>`: Specifies the color in HSL format. Takes a string with hsl values in the format `hsl(120, 50, 50)` representing hue, saturation, and lightness, respectively. Hue is in the range of 0 to 360, and saturation and lightness are percentages.
+- `"--color=<hsl>"`: Specifies the color in HSL format. Takes a string with hsl values in the format `hsl(120, 50, 50)` representing hue, saturation, and lightness, respectively. Hue is in the range of 0 to 360, and saturation and lightness are percentages.
 
 - `--color=<hex>`: Specifies the color in hexadecimal format. Takes a string representing a 6-digit hexadecimal color code.
 
@@ -93,7 +93,7 @@ go run . --color=red "my" "my code"
 go run . --color=red "Hello"
 go run . "--color=rgb(255, 0, 0)" "Hello"
 go run . "--color=hsl(0, 100, 50)" "Hello"
-go run . "--color=#FF0000" "Hello"
+go run . "--color=#FF0000" Hello"
 
 ```
 
@@ -139,7 +139,7 @@ Ensure that Go is installed on your system. You can install Go from the official
 ```
 ### Usage
 
-Run the program by navigating to ascciart directory and passing the text string as an argument along with the --color option to specify the color. Here's an example:
+Run the program by navigating to **ascciart** directory and passing the text string as an argument along with the --color option to specify the color. Here's an example:
 
 ```bash
 cd ascciart/
@@ -193,7 +193,7 @@ Output:
 
 
 ``` bash
-go run . "--color=00FF00" "Hello" 
+go run . --color=00FF00 "Hello" 
 
 ```
 Output:
@@ -267,6 +267,16 @@ cd colorconversions
 go test -v
  ```
 
+ ## Learning Outcomes
+
+This project will help you  learn about:
+
+  +  The Go file system(fs) API
+  +  Color converters
+  +  Data manipulation
+  +  Terminal display
+
+
 ### Allowed Packages
 
 Only standard Go packages are allowed in this project. This restriction is to ensure that the utility remains lightweight and dependency-free.
@@ -290,7 +300,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [RGB](https://www.w3schools.com/colors/colors_rgb.asp): A comma-separated list of the red, green and blue components of a color, each ranging from 0 to 255. For example, rgb(255, 0, 0) represents the color red.
 
 - [HSL](https://www.w3schools.com/colors/colors_hsl.asp): A comma-separated list of the hue, saturation and lightness components of a color, with the hue ranging from 0 to 360, and the saturation and lightness ranging from 0% to 100%. For example, hsl(0, 100%, 50%) represents the color red.
-- [Color Conversion Algorithm](https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae)
+- [Color Conversion Algorithm](https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae)colors
+
+- [Color conversion](https://www.hackitu.de/termcolor256/) ANSI colors and conversion from rgb to ansi
+
+- [ANSI colors](https://talyian.github.io/ansicolors/) A list of  ansi colors and their codes 
 
 
 ## Authors
