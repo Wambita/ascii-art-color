@@ -29,6 +29,10 @@ func main() {
 	if len(os.Args) == 3 {
 		colorFlag := os.Args[1]
 		inputString = os.Args[2]
+		if !(strings.HasPrefix(colorFlag, "--color=")) {
+			fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
+			return
+		}
 		colorSplit := strings.Split(colorFlag, "=")
 		color = colorSplit[1]
 		lettersToColor = inputString
@@ -42,6 +46,10 @@ func main() {
 		colorFlag := os.Args[1]
 		inputString = os.Args[3]
 		lettersToColor = os.Args[2]
+		if !(strings.HasPrefix(colorFlag, "--color=")) {
+			fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
+			return
+		}
 		colorSplit := strings.Split(colorFlag, "=")
 		color = colorSplit[1]
 		if len(colorSplit) != 2 || colorSplit[0] != "--color" {
