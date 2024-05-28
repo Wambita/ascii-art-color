@@ -17,10 +17,10 @@ func CreateMap(filePaths string) (map[rune][]string, error) {
 	// Check for empty file
 	stat, err := file.Stat()
 	if err != nil {
-	  return nil, err
+		return nil, err
 	}
 	if stat.Size() == 0 {
-	  return nil, fmt.Errorf("error: Character map file '%s' is empty", filePaths)
+		return nil, fmt.Errorf("error: Character map file '%s' is empty", filePaths)
 	}
 	scanner := bufio.NewScanner(file)
 	lines := []string{}

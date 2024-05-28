@@ -16,7 +16,7 @@ func TestIsPrintable(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			result := IsPrintable(test.input)
-			if result != test.expeted{
+			if result != test.expeted {
 				t.Errorf("IsPrintable(%s) expected %v, got %v ", test.input, test.expeted, result)
 			}
 		})
