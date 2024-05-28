@@ -26,7 +26,7 @@ func main() {
 		inputString = os.Args[1]
 		lettersToColor = inputString
 		color = "resetCode"
-		filePaths = "standard.txt"
+		filePaths = "bannerfiles/standard.txt"
 	}
 
 	// case color selected but no specified letters to be colored (color+string)
@@ -34,7 +34,7 @@ func main() {
 		if strings.HasPrefix(os.Args[1], "--color=") {
 			colorFlag := os.Args[1]
 			inputString = os.Args[2]
-			filePaths = "standard.txt"
+			filePaths = "bannerfiles/standard.txt"
 			if !(strings.HasPrefix(colorFlag, "--color=")) {
 				fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 				return
