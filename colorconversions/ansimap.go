@@ -9,7 +9,7 @@ func AnsiColorMap() map[string]string {
 		"red":           "\x1b[31m",
 		"green":         "\x1b[32m",
 		"blue":          "\x1b[34m",
-		"magneta":       "\x1b[35m",
+		"magenta":       "\x1b[35m",
 		"white":         "\x1b[37m",
 		"pink":          "\x1b[38;5;205m", // ANSI code for pink
 		"brown":         "\x1b[38;5;94m",  // ANSI code for brown
