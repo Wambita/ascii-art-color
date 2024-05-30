@@ -9,6 +9,16 @@ import (
 
 func CreateMap(filePaths string) (map[rune][]string, error) {
 	// Open and read a file specified by the given file path(s), creating an ASCII art map.
+	// Check if the file exists
+	_, err := os.Stat(filePaths)
+	if err != nil {
+		if os.IsNotExist(err) {
+			fmt.Println("File does not exist:", filePaths)
+		} else {
+			fmt.Println("Error checking file status:", err)
+		}
+		return nil, err
+	}
 	file, err := os.Open(filePaths)
 	if err != nil {
 		return nil, err
@@ -17,10 +27,10 @@ func CreateMap(filePaths string) (map[rune][]string, error) {
 	// Check for empty file
 	stat, err := file.Stat()
 	if err != nil {
-	  return nil, err
+		return nil, err
 	}
 	if stat.Size() == 0 {
-	  return nil, fmt.Errorf("error: Character map file '%s' is empty", filePaths)
+		return nil, fmt.Errorf("error: Character map file '%s' is empty", filePaths)
 	}
 	scanner := bufio.NewScanner(file)
 	lines := []string{}

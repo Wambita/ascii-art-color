@@ -1,6 +1,6 @@
 package asciiart
 
-func AnsiColorMap () (map[string]string) {
+func AnsiColorMap() map[string]string {
 	return map[string]string{
 		"cyan":          "\033[36m",
 		"grey":          "\033[37m",
@@ -9,7 +9,7 @@ func AnsiColorMap () (map[string]string) {
 		"red":           "\x1b[31m",
 		"green":         "\x1b[32m",
 		"blue":          "\x1b[34m",
-		"magneta":       "\x1b[35m",
+		"magenta":       "\x1b[35m",
 		"white":         "\x1b[37m",
 		"pink":          "\x1b[38;5;205m", // ANSI code for pink
 		"brown":         "\x1b[38;5;94m",  // ANSI code for brown
@@ -25,5 +25,4 @@ func AnsiColorMap () (map[string]string) {
 		"brightWhite":   "\x1b[97m",
 		"resetCode":     "\033[0m",
 	}
-
 }

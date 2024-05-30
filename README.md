@@ -10,6 +10,7 @@ The ASCII-Art program converts input text into a graphic representation using AS
 ### Features
 
 - Multiple Color codes: you can use hexadecimal color, rgb , hsl and regular color format methods.
+- Multiple font : you can use a specific font / banner file 
 - Option to color certain characters in the string a specific color 
 - Special Character Handling: Processes and displays numbers, letters, spaces, special characters, and \n for newlines.
 
@@ -35,7 +36,7 @@ It returns a 2D array of `[rune][]string`
 This function maps the a string representation of a color to its equivalent code representation in an ANSI color. It returns a 2D array of `[string]string`
 
 ### `ConvertHexToAnsi`
-This function converts a hexadecimal string that is a color code and converts it to the nearest ANSI color representation. It parses the red, green and  blue values from the input string and converts them RGB and utilises anothe function to convert the RGB values to their corresponding ANSI color code.
+This function converts a hexadecimal string that is a color code and converts it to the nearest ANSI color representation. It parses the red, green and  blue values from the input string, converts them RGB and utilises another function `ConvertRGBToAnsi` to convert the RGB values to their corresponding ANSI color code.
 
 ### `ConvertHSLToRGB`
 This function converts HSL (Hue, Saturation, Lightness) color values to their corresponding RGB (Red, Green, Blue) values. This allows users to specify colors in the HSL format and translate them into the RGB format. The function uses mathematical calculations based on the HSL color model to determine the RGB components accurately. Additionally, a helper function called abs is utilized to compute the absolute value, facilitating the conversion process. 
@@ -56,30 +57,14 @@ This function generates ASCII art with partial or full coloring based on command
 - With no arguments, it displays a usage message.
 - If provided with only one argument (the input string), it generates ASCII art using the entire input string and resets the color.
 - If provided with two arguments (--color=<color> and the input string), it generates ASCII art using the entire input string with the specified color.
+- If provided with two arguments (input string and banner), it generates ASCII art using the entire input string with the specified banner/font.
 - If provided with three arguments (--color=<color>, letters to be colored, and the input string), it generates ASCII art with the specified letters colored.
+- If provided with three arguments (--color=<color>,  input string and banner), it generates ASCII art with the specified  color and banner/font.
+- If provided with four arguments (--color=<color>,letters to be colored, input string and the banner), it generates ASCII art with the specified letters colored and in the specified banner.
   
-The function extracts the color information from the command-line arguments, reads a standard template file containing ASCII art, and displays the art with the specified color configuration.
+The function extracts the color and banner information from the command-line arguments, reads a standard template file containing ASCII art, and displays the art with the specified color configuration.
 
 
-## Usage
-
-To run the program, use the following commands:
-
-```bash
-go run . "--color=#ff0000" "" 
-go run . "--color=rgb(255, 0, 0)" "\n" 
-go run . "--color=hsl(0, 100%, 50%)" "Hello\n" 
-go run . --color=blue "hello" 
-go run . --color=green "HeLlO" 
-go run . --color=purple "Hello There" 
-go run . --color=yellow "1Hello 2There" 
-go run . "--color=#00ffff" "{Hello There}" 
-go run . --color=orange "Hello\nThere" 
-go run . --color=gray "Hello\n\nThere"
-go run . --color=red "my" "my code"
-
-
-```
 ### Flags
 - `--color=<color>`: Specifies the color to use for highlighting. Accepts color names from the available colors.
 
@@ -89,11 +74,18 @@ go run . --color=red "my" "my code"
 
 - `--color=<hex>`: Specifies the color in hexadecimal format. Takes a string representing a 6-digit hexadecimal color code.
 
+- `banner`  : Specifies the font/banner file to use. Available fonts are shadow, thinkertoy, standard. Standard is the default font used
+
+##### Flag usage
+
 ```bash
 go run . --color=red "Hello"
 go run . "--color=rgb(255, 0, 0)" "Hello"
 go run . "--color=hsl(0, 100, 50)" "Hello"
-go run . "--color=#FF0000" Hello"
+go run . "--color=#FF0000" "Hello"
+go run .  "Hello" shadow
+go run . --color=red "hello" shadow 
+go run . --color=blue "h" "hello" thinkertoy
 
 ```
 
@@ -109,7 +101,7 @@ When using a `--color=<color>` you can specify the color from the available colo
 - red
 - green
 - blue
-- magneta
+- magenta
 - white
 - pink
 - brown
@@ -130,22 +122,26 @@ When using a `--color=<color>` you can specify the color from the available colo
 
 Ensure that Go is installed on your system. You can install Go from the official Go website. Once Go is installed, you can clone and run the program directly from the source code.
 
-    Clone the repository:
+ Clone the repository:
 
-   ``` bash
-
+``` 
     git clone https://learn.zone01kisumu.ke/git/shfana/ascii-art-color
     cd ascii-art-color
 ```
 ### Usage
 
-Run the program by navigating to **ascciart** directory and passing the text string as an argument along with the --color option to specify the color. Here's an example:
+Run the program by passing the text string as an argument along with the --color option to specify the color. Here's an example:
 
 ```bash
-cd ascciart/
-go run . --color=red  "Hello"
-go run . --color=green "Hello" 
-
+go run . "Hello" 
+go run . --color=red  "Hello" 
+go run .  "hello" shadow
+go run . --color=red "my" "my code"
+go run . --color=green  "Hello" shadow
+go run . --color=#ff0000  "h" "hello" thinkertoy 
+go run . --color=#ff0000 "Hello" 
+go run . "--color=rgb(255, 0, 0)" "\n" | cat -E
+go run . "--color=hsl(0, 100%, 50%)" "Hello\n" | cat -E
 ```                                                             
 Then you start ,making changes 🏃‍♂️🏃‍♂️🏃‍♂️
 
@@ -154,7 +150,6 @@ Replace "Hello" with your desired text string and "red" and "green" with your pr
 **Basic Command: No Color Selection**
 
 ``` bash
-cd ascciart/
 go run .  "Hello" 
 
 ```
@@ -178,49 +173,91 @@ go run . --color=green "Hello"
 ```
 Output:
 
-![basic command](/bannerfiles/images/basicuse.png)
+![command with color selection](/bannerfiles/images/basicuse.png)
 
 **Command with Text and Color  Selection:**
 ``` bash
+
 go run . --color=green  "my" "my code" 
 
 ```
 Output:
 
-![basic command](/bannerfiles/images/lettersandcolor.png)
+![command with text and color selection](/bannerfiles/images/lettersandcolor.png)
 
 **Command with  Hexadecimal Color Selection**
 
 
 ``` bash
-go run . --color=00FF00 "Hello" 
+
+go run . --color=#00FF00 "Hello" 
 
 ```
 Output:
 
-![basic command](/bannerfiles/images/basicuse.png)
+![command with hexadecimal color selection](/bannerfiles/images/basicuse.png)
 
 **Command with  HSL Color Selection**
 
 
 ``` bash
-go run . "--color=hsl(120, 100, 50)" "Hello" 
+
+go run . "--color=hsl(120, 100%, 50%)" "Hello" 
 
 ```
 Output:
 
-![basic command](/bannerfiles/images/basicuse.png)
+![command with HSL color selection](/bannerfiles/images/basicuse.png)
 
 **Command with  RGB Color Selection**
 
 
 ``` bash
-go run . "--color=hsl(0, 128, 0)" "Hello" 
+
+go run . "--color=rgb(0, 255, 0)" "Hello" 
 
 ```
 Output:
 
-![basic command](/bannerfiles/images/basicuse.png)
+![command with RGB color selection](/bannerfiles/images/basicuse.png)
+
+**Command with  banner file and inputstring**
+
+
+``` bash
+
+go run .  "Hello"  shadow
+
+```
+Output:
+
+![command with input string](/bannerfiles/images/Screenshot%20from%202024-05-27%2019-06-34.png)
+
+**Command with color, input string and banner**
+
+
+``` bash
+
+go run . --color=red  "Hello" shadow
+
+```
+Output:
+
+![Command with color, input string and banner](/bannerfiles/images/Screenshot%20from%202024-05-27%2019-08-02.png)
+
+**Command with color, letters to color, input string and banner**
+
+
+``` bash
+
+go run . --color=red "H" "Hello" thinkertoy
+
+```
+Output:
+
+![Command with color, letters to color, input string and banner](/bannerfiles/images/Screenshot%20from%202024-05-27%2019-10-08.png)
+
+
 
 **Command with wrong input(wrong number of arguments)**
 ``` bash
@@ -287,7 +324,7 @@ Contributions are welcome. Please adhere to the existing coding standards and in
 If you encounter any issues or have suggestions for improvement, feel free to submit an issue or propose a change!
 
 ### Limitations
-This project can only use the standard font, in this case other fonts are not supported. This will be added in the future. If you are interested in supporting this feature feel free to submit a pull request.
+This project can only color using one specified color only . Multiple color selections  will be added in the future. If you are interested in supporting this feature feel free to submit a pull request.
 
 ### License
 
