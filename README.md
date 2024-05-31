@@ -62,19 +62,20 @@ This function generates ASCII art with partial or full coloring based on command
 - If provided with three arguments (--color=<color>,  input string and banner), it generates ASCII art with the specified  color and banner/font.
 - If provided with four arguments (--color=<color>,letters to be colored, input string and the banner), it generates ASCII art with the specified letters colored and in the specified banner.
   
-The function extracts the color and banner information from the command-line arguments, reads a standard template file containing ASCII art, and displays the art with the specified color configuration.
+The function extracts the color and banner information from the command-line arguments, reads a template file containing ASCII art, and displays the art with the specified color configuration.
 
 
 ### Flags
 - `--color=<color>`: Specifies the color to use for highlighting. Accepts color names from the available colors.
 
-- `"--color=<rgb>"`: Specifies the color in RGB format. Takes a string with rgb values in the format `rgb(0, 0, 0)`between 0 and 255 representing red, green, and blue components.
+- `"--color=<rgb>"`: Specifies the color in RGB format. Takes a string with rgb values in the format `rgb(0, 0, 0)`between 0 and 255 representing red, green, and blue components. Due to "()" being bash commands ensure the color flag is included in quotation marks to enable the project to work.
 
-- `"--color=<hsl>"`: Specifies the color in HSL format. Takes a string with hsl values in the format `hsl(120, 50, 50)` representing hue, saturation, and lightness, respectively. Hue is in the range of 0 to 360, and saturation and lightness are percentages.
+
+- `"--color=<hsl>"`: Specifies the color in HSL format. Takes a string with hsl values in the format `hsl(120, 50, 50)` representing hue, saturation, and lightness, respectively. Hue is in the range of 0 to 360, and saturation and lightness are percentages. Due to "()" being bash commands ensure the color flag is included in quotation marks to enable the project to work.
 
 - `--color=<hex>`: Specifies the color in hexadecimal format. Takes a string representing a 6-digit hexadecimal color code.
 
-- `banner`  : Specifies the font/banner file to use. Available fonts are shadow, thinkertoy, standard. Standard is the default font used
+- `banner`  : Specifies the font/banner file to use. Available fonts are shadow, thinkertoy, standard. Standard is the default font used. When including the banner option write it as the last argument and in all lowercase.
 
 ##### Flag usage
 
@@ -328,7 +329,7 @@ This project can only color using one specified color only . Multiple color sele
 
 ### License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Resources
 ### Color codes
