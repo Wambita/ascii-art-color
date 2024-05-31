@@ -1,23 +1,22 @@
 package asciiart
 
-import (
-	"testing"
-)
+import "testing"
 
-func TestIsPrintable(t *testing.T) {
+func TestIsNotPrintable(t *testing.T) {
 	tests := []struct {
-		name    string
-		input   string
-		expeted bool
+		name string
+		str  string
+		want bool
 	}{
-		{name: "printable string", input: "heLLo (world)!", expeted: true},
-		{name: "Non-printable string", input: "heLLo\t(world)!", expeted: false},
+		{name: "Printable input", str: "Hello World", want: false},
+		{name: "Non-printable input", str: "Hello\tworld", want: true},
+		{name: "Non-printable input", str: "Hello\\tworld", want: true},
+		{name: "Non-printable input", str: "Hello\nworld", want: false},	
 	}
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			result := IsPrintable(test.input)
-			if result != test.expeted {
-				t.Errorf("IsPrintable(%s) expected %v, got %v ", test.input, test.expeted, result)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := IsNotPrintable(tt.str); got != tt.want {
+				t.Errorf("IsNotPrintable() = %v, want %v", got, tt.want)
 			}
 		})
 	}
