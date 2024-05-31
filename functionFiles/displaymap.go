@@ -14,13 +14,13 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 	}
 
 	resetCode := "\033[0m"
-	//color map ansi
+	// color map ansi
 	colorMap := asciiart.AnsiColorMap()
 
 	var colorCode string
 	var ok bool
 
-	//color conversions rgb, hex, hsl
+	// color conversions rgb, hex, hsl
 	if strings.HasPrefix(color, "#") {
 		colorCode = asciiart.ConvertHexToAnsi(color)
 		if colorCode == "" {
@@ -51,8 +51,12 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 	}
 
 	input = strings.ReplaceAll(input, "\\n", "\n")
-	inputSlice := strings.Split(input, "\n")
 
+	inputSlice := strings.Split(input, "\n")
+	// check if string contains non printable chars
+	if IsNotPrintable(input) {
+		return
+	}
 	for _, line := range inputSlice {
 		if line == "" {
 			fmt.Println()
@@ -71,6 +75,7 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 						return
 					}
 				}
+
 				fmt.Println()
 			}
 		}
