@@ -19,22 +19,26 @@ func main() {
 		lettersToColor string
 		color          string
 		banner         string
-		filePaths      string
+		fileName       string
 	)
 	// case: no colors selected(input string only)
 	if len(os.Args) == 2 {
-		inputString = os.Args[1]
-		lettersToColor = inputString
-		color = "resetCode"
-		filePaths = "bannerfiles/standard.txt"
+		if !(strings.HasPrefix(os.Args[1], "--color=")) {
+			inputString = os.Args[1]
+			lettersToColor = inputString
+			color = "resetCode"
+			fileName = "standard.txt"
+		} else {
+			fmt.Println("Usage: go run . [OPTION] and/or [BANNER] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
+			return
+		}
 	}
-
 	// case color selected but no specified letters to be colored (color+string)
 	if len(os.Args) == 3 {
 		if strings.HasPrefix(os.Args[1], "--color=") {
 			colorFlag := os.Args[1]
 			inputString = os.Args[2]
-			filePaths = "bannerfiles/standard.txt"
+			fileName = "standard.txt"
 			if !(strings.HasPrefix(colorFlag, "--color=")) {
 				fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 				return
@@ -53,7 +57,7 @@ func main() {
 		colorFlag := os.Args[1]
 		inputString = os.Args[3]
 		lettersToColor = os.Args[2]
-		filePaths = "bannerfiles/standard.txt"
+		fileName = "standard.txt"
 		if !(strings.HasPrefix(colorFlag, "--color=")) {
 			fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
@@ -75,11 +79,11 @@ func main() {
 
 		switch banner {
 		case "shadow":
-			filePaths = "bannerfiles/shadow.txt"
+			fileName = "shadow.txt"
 		case "thinkertoy":
-			filePaths = "bannerfiles/thinkertoy.txt"
+			fileName = "thinkertoy.txt"
 		case "standard":
-			filePaths = "bannerfiles/standard.txt"
+			fileName = "standard.txt"
 		default:
 			fmt.Println("Usage: go run . [OPTION] [STRING]\n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
@@ -107,11 +111,11 @@ func main() {
 
 		switch banner {
 		case "shadow":
-			filePaths = "bannerfiles/shadow.txt"
+			fileName = "shadow.txt"
 		case "thinkertoy":
-			filePaths = "bannerfiles/thinkertoy.txt"
+			fileName = "thinkertoy.txt"
 		case "standard":
-			filePaths = "bannerfiles/standard.txt"
+			fileName = "standard.txt"
 		default:
 			fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
@@ -139,11 +143,11 @@ func main() {
 
 		switch banner {
 		case "shadow":
-			filePaths = "bannerfiles/shadow.txt"
+			fileName = "shadow.txt"
 		case "thinkertoy":
-			filePaths = "bannerfiles/thinkertoy.txt"
+			fileName = "thinkertoy.txt"
 		case "standard":
-			filePaths = "bannerfiles/standard.txt"
+			fileName = "standard.txt"
 		default:
 			fmt.Println("Usage: go run . [OPTION] [STRING] \n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
 			return
@@ -153,7 +157,7 @@ func main() {
 	// Extract the letters to be colored and the rest of the string
 	// lettersToColor, inputString = extractLettersToColor(args)
 
-	characterMap, err := asciiart.CreateMap(filePaths)
+	characterMap, err := asciiart.CreateMap(fileName)
 	if err != nil {
 		fmt.Println("Error reading map:", err)
 		return
