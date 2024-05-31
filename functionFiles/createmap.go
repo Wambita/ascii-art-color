@@ -7,19 +7,20 @@ import (
 	"path/filepath"
 )
 
-func CreateMap(filePaths string) (map[rune][]string, error) {
+func CreateMap(fileName string) (map[rune][]string, error) {
 	// Open and read a file specified by the given file path(s), creating an ASCII art map.
 	// Check if the file exists
-	_, err := os.Stat(filePaths)
+	file, err := os.Open(fileName)
 	if err != nil {
 		if os.IsNotExist(err) {
-			fmt.Println("File does not exist:", filePaths)
+			fmt.Println("File does not exist:", fileName)
+			file = GetFile(fileName)
+			os.Exit(0)
 		} else {
 			fmt.Println("Error checking file status:", err)
 		}
 		return nil, err
 	}
-	file, err := os.Open(filePaths)
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +31,7 @@ func CreateMap(filePaths string) (map[rune][]string, error) {
 		return nil, err
 	}
 	if stat.Size() == 0 {
-		return nil, fmt.Errorf("error: Character map file '%s' is empty", filePaths)
+		return nil, fmt.Errorf("error: Character map file '%s' is empty", fileName)
 	}
 	scanner := bufio.NewScanner(file)
 	lines := []string{}
@@ -42,7 +43,7 @@ func CreateMap(filePaths string) (map[rune][]string, error) {
 		return nil, err
 	}
 	// Validate the file path and checks for empty files or non-text file extensions.
-	if filepath.Ext(filePaths) != ".txt" {
+	if filepath.Ext(fileName) != ".txt" {
 		fmt.Println("Wrong extension, use .txt")
 		return nil, err
 	}
