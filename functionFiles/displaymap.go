@@ -30,14 +30,14 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 	} else if strings.HasPrefix(color, "rgb(") {
 		r, g, b, err := asciiart.ExtractRGBValues(color)
 		if err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("Error:Invalid rgb color use values from 0-255")
 			return
 		}
 		colorCode = asciiart.ConvertRGBToAnsi(r, g, b)
 	} else if strings.HasPrefix(color, "hsl(") {
 		h, s, l, err := asciiart.ExtractHSLValues(color)
 		if err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("Error: invalid hsl color specified", err)
 			return
 		}
 		r, g, b := asciiart.ConvertHSLToRGB(h, s, l)
@@ -45,7 +45,7 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 	} else {
 		colorCode, ok = colorMap[color]
 		if !ok {
-			fmt.Println("Error: Invalid color specified.")
+			fmt.Println("Error: Invalid color specified. Use colors provided in the README")
 			return
 		}
 	}
