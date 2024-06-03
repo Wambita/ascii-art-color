@@ -327,10 +327,6 @@ If you encounter any issues or have suggestions for improvement, feel free to su
 ### Limitations
 This project can only color using one specified color only . Multiple color selections  will be added in the future. If you are interested in supporting this feature feel free to submit a pull request.
 
-### License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Resources
 ### Color codes
 - [Hexadecimal](https://www.w3schools.com/colors/colors_hexadecimal.asp): A 6-digit hexadecimal representation of a color, with 2 digits for each of the red, green and blue components. For example, #ff0000 represents the color red.
@@ -338,6 +334,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [RGB](https://www.w3schools.com/colors/colors_rgb.asp): A comma-separated list of the red, green and blue components of a color, each ranging from 0 to 255. For example, rgb(255, 0, 0) represents the color red.
 
 - [HSL](https://www.w3schools.com/colors/colors_hsl.asp): A comma-separated list of the hue, saturation and lightness components of a color, with the hue ranging from 0 to 360, and the saturation and lightness ranging from 0% to 100%. For example, hsl(0, 100%, 50%) represents the color red.
+
 - [Color Conversion Algorithm](https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae)colors
 
 - [Color conversion](https://www.hackitu.de/termcolor256/) ANSI colors and conversion from rgb to ansi
@@ -351,5 +348,7 @@ This project was build and maintained by:
 - [hokwach](https://learn.zone01kisumu.ke/git/hokwach/)
 - [shfana](https://learn.zone01kisumu.ke/git/shfana/)
 
-## License 
-This file is licensed under the MIT License. See LICENSE for details
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
