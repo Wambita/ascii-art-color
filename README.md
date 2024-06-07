@@ -71,7 +71,7 @@ The function extracts the color and banner information from the command-line arg
 - `"--color=<rgb>"`: Specifies the color in RGB format. Takes a string with rgb values in the format `rgb(0, 0, 0)`between 0 and 255 representing red, green, and blue components. Due to "()" being bash commands ensure the color flag is included in quotation marks to enable the project to work.
 
 
-- `"--color=<hsl>"`: Specifies the color in HSL format. Takes a string with hsl values in the format `hsl(120, 50, 50)` representing hue, saturation, and lightness, respectively. Hue is in the range of 0 to 360, and saturation and lightness are percentages. Due to "()" being bash commands ensure the color flag is included in quotation marks to enable the project to work.
+- `"--color=<hsl>"`: Specifies the color in HSL format. Takes a string with hsl values in the format `hsl(120, 50%, 50%)` representing hue, saturation, and lightness, respectively. Hue is in the range of 0 to 360, and saturation and lightness are percentages. Due to "()" being bash commands ensure the color flag is included in quotation marks to enable the project to work.
 
 - `--color=<hex>`: Specifies the color in hexadecimal format. Takes a string representing a 6-digit hexadecimal color code.
 
@@ -119,7 +119,7 @@ When using a `--color=<color>` you can specify the color from the available colo
 
 
 
-### Installation
+## Installation
 
 Ensure that Go is installed on your system. You can install Go from the official Go website. Once Go is installed, you can clone and run the program directly from the source code.
 
@@ -129,9 +129,9 @@ Ensure that Go is installed on your system. You can install Go from the official
     git clone https://learn.zone01kisumu.ke/git/shfana/ascii-art-color
     cd ascii-art-color
 ```
-### Usage
+## Usage
 
-Run the program by passing the text string as an argument along with the --color option to specify the color. Here's an example:
+Run the program by passing the text string as an argument along with the --color option to specify the color. Here's are examples:
 
 ```bash
 go run . "Hello" 
@@ -285,9 +285,7 @@ This project comes with three predefined ASCII fonts, located in banner files:
 **- Characters are separated by a new line `\n`.*
 **-Can only specify font in the code **
 
-### Development Notes
-
-### Testing
+## Testing
 
 Unit tests are highly recommended to ensure the integrity and functionality of the code. Test cases can be executed with:
 
@@ -315,17 +313,9 @@ This project will help you  learn about:
   +  Terminal display
 
 
-### Allowed Packages
+## Allowed Packages
 
 Only standard Go packages are allowed in this project. This restriction is to ensure that the utility remains lightweight and dependency-free.
-
-### Contribution
-
-Contributions are welcome. Please adhere to the existing coding standards and include unit tests for any new features or changes. Ensure to thoroughly test the code before pushing any updates.
-If you encounter any issues or have suggestions for improvement, feel free to submit an issue or propose a change!
-
-### Limitations
-This project can only color using one specified color only . Multiple color selections  will be added in the future. If you are interested in supporting this feature feel free to submit a pull request.
 
 ## Resources
 ### Color codes
@@ -341,14 +331,23 @@ This project can only color using one specified color only . Multiple color sele
 
 - [ANSI colors](https://talyian.github.io/ansicolors/) A list of  ansi colors and their codes 
 
+## Limitations
+This project can only color using one specified color only . Multiple color selections  will be added in the future. If you are interested in supporting this feature feel free to submit a pull request.
+
+## Contribution
+
+Contributions are welcome. Please adhere to the existing coding standards and include unit tests for any new features or changes. Ensure to thoroughly test the code before pushing any updates.
+If you encounter any issues or have suggestions for improvement, feel free to submit an issue or propose a change!
 
 ## Authors
 This project was build and maintained by:
+
+- [shfana](https://learn.zone01kisumu.ke/git/shfana/)
 - [mdudi](https://github.com/Dudimath)
 - [hokwach](https://learn.zone01kisumu.ke/git/hokwach/)
-- [shfana](https://learn.zone01kisumu.ke/git/shfana/)
 
 
-### License
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
