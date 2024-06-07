@@ -3,11 +3,11 @@
 ![image](/bannerfiles/images/pic.png)
 
 
-### Overview
+## Overview
 
 The ASCII-Art program converts input text into a graphic representation using ASCII characters and colors the art using the color specified by the user. It supports various fonts and special characters, including spaces, newlines, and punctuation. This tool is ideal for creating stylized text for use in command line applications, documentation, or simply for artistic purposes.
 
-### Features
+## Features
 
 - Multiple Color codes: you can use hexadecimal color, rgb , hsl and regular color format methods.
 - Multiple font : you can use a specific font / banner file 
@@ -84,9 +84,8 @@ go run . --color=red "Hello"
 go run . "--color=rgb(255, 0, 0)" "Hello"
 go run . "--color=hsl(0, 100, 50)" "Hello"
 go run . "--color=#FF0000" "Hello"
-go run .  "Hello" shadow
-go run . --color=red "hello" shadow 
-go run . --color=blue "h" "hello" thinkertoy
+go run . --color=red "hello" 
+go run . --color=blue "h" "hello"
 
 ```
 

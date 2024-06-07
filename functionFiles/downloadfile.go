@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func GetFile(fileName string) *os.File {
+func GetFile(fileName string) {
 	fullURL := "https://learn.zone01kisumu.ke/git/root/public/raw/branch/master/subjects/ascii-art/" + fileName
 
 	// create a blank file:
@@ -35,5 +35,4 @@ func GetFile(fileName string) *os.File {
 	}
 	defer file.Close()
 	fmt.Printf("Downloaded a file %s with size %d\n Run the program again\n", fileName, size)
-	return file
 }

@@ -14,7 +14,7 @@ func CreateMap(fileName string) (map[rune][]string, error) {
 	if err != nil {
 		if os.IsNotExist(err) {
 			fmt.Println("File does not exist:", fileName)
-			file = GetFile(fileName)
+			GetFile(fileName)
 			os.Exit(0)
 		} else {
 			fmt.Println("Error checking file status:", err)

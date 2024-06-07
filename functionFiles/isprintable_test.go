@@ -11,7 +11,7 @@ func TestIsNotPrintable(t *testing.T) {
 		{name: "Printable input", str: "Hello World", want: false},
 		{name: "Non-printable input", str: "Hello\tworld", want: true},
 		{name: "Non-printable input", str: "Hello\\tworld", want: true},
-		{name: "Non-printable input", str: "Hello\nworld", want: false},	
+		{name: "Non-printable input", str: "Hello\nworld", want: false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
