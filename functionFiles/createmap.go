@@ -21,9 +21,6 @@ func CreateMap(fileName string) (map[rune][]string, error) {
 		}
 		return nil, err
 	}
-	if err != nil {
-		return nil, err
-	}
 	defer file.Close()
 	// Check for empty file
 	stat, err := file.Stat()
