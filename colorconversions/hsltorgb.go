@@ -4,7 +4,10 @@ import "math"
 
 // ConvertHSLToRGB converts HSL values to RGB values.
 func ConvertHSLToRGB(h, s, l float64) (int, int, int) {
-	// normalize saturation and hue values
+	/* normalize saturation and hue values
+	s  saturation
+	l - lightness */
+
 	s = s / 100
 	l = l / 100
 
