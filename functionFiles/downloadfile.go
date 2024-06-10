@@ -8,6 +8,10 @@ import (
 )
 
 func GetFile(fileName string) {
+	if !(fileName == "thinkertoy.txt" || fileName == "shadow.txt" || fileName == "standard.txt") {
+		fmt.Println("Provide the correct banner file name <standard> or <shadow> or <thinkertoy>")
+		return
+	}
 	fullURL := "https://learn.zone01kisumu.ke/git/root/public/raw/branch/master/subjects/ascii-art/" + fileName
 
 	// create a blank file:
