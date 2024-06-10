@@ -1,6 +1,6 @@
 # Ascii-Art-Color
 
-![image](/bannerfiles/images/pic.png)
+![image](/images/pic.png)
 
 
 ## Overview
@@ -174,7 +174,7 @@ go run . --color=green "Hello"
 ```
 Output:
 
-![command with color selection](/bannerfiles/images/basicuse.png)
+![command with color selection](/images/basicuse.png)
 
 **Command with Text and Color  Selection:**
 ``` bash
@@ -184,7 +184,7 @@ go run . --color=green  "my" "my code"
 ```
 Output:
 
-![command with text and color selection](/bannerfiles/images/lettersandcolor.png)
+![command with text and color selection](/images/lettersandcolor.png)
 
 **Command with  Hexadecimal Color Selection**
 
@@ -196,7 +196,7 @@ go run . --color=#00FF00 "Hello"
 ```
 Output:
 
-![command with hexadecimal color selection](/bannerfiles/images/basicuse.png)
+![command with hexadecimal color selection](/images/basicuse.png)
 
 **Command with  HSL Color Selection**
 
@@ -208,7 +208,7 @@ go run . "--color=hsl(120, 100%, 50%)" "Hello"
 ```
 Output:
 
-![command with HSL color selection](/bannerfiles/images/basicuse.png)
+![command with HSL color selection](/images/basicuse.png)
 
 **Command with  RGB Color Selection**
 
@@ -220,7 +220,7 @@ go run . "--color=rgb(0, 255, 0)" "Hello"
 ```
 Output:
 
-![command with RGB color selection](/bannerfiles/images/basicuse.png)
+![command with RGB color selection](/images/basicuse.png)
 
 **Command with  banner file and inputstring**
 
@@ -232,7 +232,7 @@ go run .  "Hello"  shadow
 ```
 Output:
 
-![command with input string](/bannerfiles/images/Screenshot%20from%202024-05-27%2019-06-34.png)
+![command with input string](/images/Screenshot%20from%202024-05-27%2019-06-34.png)
 
 **Command with color, input string and banner**
 
@@ -244,7 +244,7 @@ go run . --color=red  "Hello" shadow
 ```
 Output:
 
-![Command with color, input string and banner](/bannerfiles/images/Screenshot%20from%202024-05-27%2019-08-02.png)
+![Command with color, input string and banner](/images/Screenshot%20from%202024-05-27%2019-08-02.png)
 
 **Command with color, letters to color, input string and banner**
 
@@ -256,7 +256,7 @@ go run . --color=red "H" "Hello" thinkertoy
 ```
 Output:
 
-![Command with color, letters to color, input string and banner](/bannerfiles/images/Screenshot%20from%202024-05-27%2019-10-08.png)
+![Command with color, letters to color, input string and banner](/images/Screenshot%20from%202024-05-27%2019-10-08.png)
 
 
 
@@ -325,7 +325,9 @@ Only standard Go packages are allowed in this project. This restriction is to en
 
 - [HSL](https://www.w3schools.com/colors/colors_hsl.asp): A comma-separated list of the hue, saturation and lightness components of a color, with the hue ranging from 0 to 360, and the saturation and lightness ranging from 0% to 100%. For example, hsl(0, 100%, 50%) represents the color red.
 
-- [Color Conversion Algorithm](https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae)colors
+- [Color Conversion Algorithm](https://en.wikipedia.org/wiki/HSL_and_HSV#Color_conversion_formulae) colors
+
+- [HSL to RGB conversion](https://www.rapidtables.com/convert/color/hsl-to-rgb.html)
 
 - [Color conversion](https://www.hackitu.de/termcolor256/) ANSI colors and conversion from rgb to ansi
 
@@ -337,7 +339,7 @@ This project can only color using one specified color only . Multiple color sele
 ## Contribution
 
 Contributions are welcome. Please adhere to the existing coding standards and include unit tests for any new features or changes. Ensure to thoroughly test the code before pushing any updates.
-If you encounter any issues or have suggestions for improvement, feel free to submit an issue or propose a change!
+If you encounter any issues or have suggestions for improvement, feel free to submit an issue, pull request or propose a change!
 
 ## Authors
 This project was build and maintained by:
