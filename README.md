@@ -13,7 +13,6 @@ The ASCII-Art program converts input text into a graphic representation using AS
 - Multiple font : you can use a specific font / banner file 
 - Option to color certain characters in the string a specific color 
 - Special Character Handling: Processes and displays numbers, letters, spaces, special characters, and \n for newlines.
-- Download missing banner files i.e standard.txt, shadow.txt, thinkertoy.txt
 
 
 ## Funtionality
