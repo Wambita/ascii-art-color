@@ -12,14 +12,11 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 		fmt.Println("Error: Character map is empty. Please provide a valid character map.")
 		return
 	}
-
 	resetCode := "\033[0m"
 	// color map ansi
 	colorMap := asciiart.AnsiColorMap()
-
 	var colorCode string
 	var ok bool
-
 	// color conversions rgb, hex, hsl
 	if strings.HasPrefix(color, "#") {
 		colorCode = asciiart.ConvertHexToAnsi(color)
@@ -49,9 +46,7 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 			return
 		}
 	}
-
 	input = strings.ReplaceAll(input, "\\n", "\n")
-
 	inputSlice := strings.Split(input, "\n")
 	// check if string contains non printable chars
 	if IsNotPrintable(input) {
@@ -75,7 +70,6 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 						return
 					}
 				}
-
 				fmt.Println()
 			}
 		}

@@ -11,7 +11,6 @@ func ConvertHexToAnsi(hex string) string {
 		fmt.Println("Invalid hex format: use 6 #RRGGBB values from 0-F")
 		return ""
 	}
-
 	// validate each character of the hex string
 	var (
 		r, g, b int64

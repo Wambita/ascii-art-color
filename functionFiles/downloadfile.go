@@ -13,13 +13,11 @@ func GetFile(fileName string) {
 		return
 	}
 	fullURL := "https://learn.zone01kisumu.ke/git/root/public/raw/branch/master/subjects/ascii-art/" + fileName
-
 	// create a blank file:
 	file, err := os.Create(fileName)
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
-
 	client := http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			req.URL.Opaque = req.URL.Path

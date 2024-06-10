@@ -25,7 +25,6 @@ func ExtractRGBValues(rgb string) (int, int, int, error) {
 	if err1 != nil || err2 != nil || err3 != nil {
 		return 0, 0, 0, fmt.Errorf("invalid rgb format")
 	}
-
 	// rgb values should range between 0-255
 	if r < 0 || r > 255 {
 		return 0, 0, 0, fmt.Errorf("red (r) must range between 0 -255")
