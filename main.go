@@ -34,7 +34,7 @@ func main() {
 		}
 	}
 	// case color selected but no specified letters to be colored (color+string)
-	if len(os.Args) == 3 {
+	if len(os.Args) == 3 && (strings.HasPrefix(os.Args[1], "--color=")) {
 		colorFlag := os.Args[1]
 		inputString = os.Args[2]
 		fileName = "standard.txt"
