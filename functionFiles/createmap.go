@@ -6,7 +6,6 @@ import (
 	"hash/crc32"
 	"os"
 	"path/filepath"
-	
 )
 
 func CreateMap(fileName string) (map[rune][]string, error) {
@@ -44,7 +43,7 @@ func CreateMap(fileName string) (map[rune][]string, error) {
 	crc32Table := crc32.MakeTable(crc32.IEEE)
 	checksum := crc32.Checksum(data, crc32Table)
 	if !(checksum == 0x9ffd59bc || checksum == 0x2f465361 || checksum == 0x6ee86a07) {
-		return nil, fmt.Errorf("file modified")
+		return nil, fmt.Errorf("file modified, undo changes made to %q ", fileName)
 	}
 	err = scanner.Err()
 	if err != nil {
