@@ -3,8 +3,10 @@ package asciiart
 import (
 	"bufio"
 	"fmt"
+	"hash/crc32"
 	"os"
 	"path/filepath"
+	
 )
 
 func CreateMap(fileName string) (map[rune][]string, error) {
@@ -34,6 +36,17 @@ func CreateMap(fileName string) (map[rune][]string, error) {
 	lines := []string{}
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
+	}
+	var data []byte
+	for _, value := range lines {
+		for _, value2 := range value {
+			data = append(data, byte(value2))
+		}
+	}
+	crc32Table := crc32.MakeTable(crc32.IEEE)
+	checksum := crc32.Checksum(data, crc32Table)
+	if !(checksum == 0x9ffd59bc || checksum == 0x2f465361 || checksum == 0x6ee86a07) {
+		return nil, fmt.Errorf("file modified")
 	}
 	err = scanner.Err()
 	if err != nil {
