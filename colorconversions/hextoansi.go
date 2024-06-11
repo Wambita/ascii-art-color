@@ -7,11 +7,10 @@ import (
 
 // Converts Hex color code input to nearest ANSI color
 func ConvertHexToAnsi(hex string) string {
-	if len(hex) != 7 && hex[0] != '#' {
+	if len(hex) != 7 || hex[0] != '#' {
 		fmt.Println("Invalid hex format: use 6 #RRGGBB values from 0-F")
 		return ""
 	}
-
 	// validate each character of the hex string
 	var (
 		r, g, b int64
