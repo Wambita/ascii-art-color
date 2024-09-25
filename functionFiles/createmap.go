@@ -3,6 +3,7 @@ package asciiart
 import (
 	"bufio"
 	"fmt"
+	"hash/crc32"
 	"os"
 	"path/filepath"
 )
@@ -41,7 +42,9 @@ func CreateMap(fileName string) (map[rune][]string, error) {
 	}
 
 	// check if file is alteres
-	if IsAltered(data) {
+	crc32Table := crc32.MakeTable(crc32.IEEE)
+	checksum := crc32.Checksum(data, crc32Table)
+	if IsAltered(checksum) {
 		return nil, fmt.Errorf("error: File '%s' is altered", fileName)
 	}
 	err = scanner.Err()
