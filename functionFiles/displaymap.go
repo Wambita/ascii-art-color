@@ -50,6 +50,7 @@ func DisplayAsciiArtWithPartialColor(characterMap map[rune][]string, input, lett
 	inputSlice := strings.Split(input, "\n")
 	// check if string contains non printable chars
 	if IsNotPrintable(input) {
+		fmt.Println("Input contains non printable characters")
 		return
 	}
 	for _, line := range inputSlice {
